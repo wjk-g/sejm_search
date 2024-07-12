@@ -2,7 +2,7 @@
 
 ## Motivation
 
-Much of politics is now carefully managed and spun by communication and PR experts. The modern media landscape, too, rarely encourages a substantive debate "about the issues". The app is intended to give you the ability to look behind the curtain of political discourse. Parliamentary committee sittings, with some exceptions, are usually not highly publicised and yet they are where much of serious substantive legislative work is being performed. You may be interested in what your representatives have to say if you are:
+Much of politics is now carefully managed and spun by communication and PR experts. The modern media landscape, too, rarely encourages a substantive debate "about the issues". The app is intended to give you the ability to look behind the curtain of political discourse. Parliamentary committee sittings, with some exceptions, are usually not highly publicised and yet they are where much of crucial legislative work takes place. You may be interested in what your representatives have to say if you are:
 
 - an academic studying political discourse
 - a journalist
@@ -22,6 +22,14 @@ Much of politics is now carefully managed and spun by communication and PR exper
 ### Search
 
 - App uses elasticsearch to search through transcripts. You can use 'naive' search to find keywords or vectorized search to look for 'topics' or 'sentiments' in the data.
+- Examples:
+    - search based on a keyword:
+
+<img src="sejm_search/static/imgs/inflacja_simple.png" width="75%">
+    
+    - smart (vectorized) search:
+
+<img src="sejm_search/static/imgs/inflacja_smart.png" width="75%">
 
 ### Tech stack
 
@@ -38,7 +46,6 @@ Elasticsearch
 
     - grouped under data_create
         - terms_create
-        - terms_create
         - mps_get
         - mps_create
         - terms_and_mps_link
@@ -51,3 +58,4 @@ Elasticsearch
         - transcripts_create
         - transcripts_process
         - paragraphs_vectorize
+
