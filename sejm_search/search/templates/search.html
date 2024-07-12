@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h2>Przeszukaj transkrypcje</h2>
+<form method="post" action="{% url 'search' %}" style="width: 100%; margin: 0 auto;">
+    {% csrf_token %}
+    <p style="width: 100%; margin: 0;">
+        {% render_field form.query class="full-width-input" %}
+    </p>
+    <div style="display:flex; flex-direction: row; margin-top: 10px;">
+        <p>{% render_field form.search_type %}</p>
+        <div style="margin-left: 30px;"">
+            <b>Uszereguj według</b>
+            <p>{% render_field form.order %}</p>
+        </div>
+    </div>
+    <button type="submit" style="width: 100%; height: 50px; margin-top: 10px; padding: 10px;">Wyszukaj</button>
+</form>
+<!-- Search results -->
+{% if paragraphs %}
+    <hr>
+    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <p>Znaleziono {{ total_hits }} pasujących</p>
+        <p style="display: flex; flex-direction: row;">
+            <a href="{% url 'clear_search_params' %}">Wyczyść wyniki wyszukiwania</a>
+            <a href="" style="margin-left: 20px;">Pobierz wyniki</a>
+        </p>
+    </div>
+    <div>
+        {% for paragraph in paragraphs %}
+            <div>
+                <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%;">
+                    <!-- Speaker -->
+                    <p>
+                        {% if paragraph.speaker_mp %}
+                            <a href="{% url 'mp_view' paragraph.speaker_mp.pk %}"><strong>{{paragraph.speaker_mp.name}}</strong></a>
+                        {% endif %}
+                        {% if paragraph.speaker_guest %}
+                            <strong>{{paragraph.speaker_guest.name}}</strong>
+                        {% endif %}
+                    <div style="display: flex; flex-direction: row; justify-content: space-between; color: grey">
+                        </p>
+                            <!-- date -->
+                            {{paragraph.sitting.date}}
+                        </p>
+                        <!-- term + committee -->
+                        <p style="padding-left: 20px;">
+                            kadencja: {{paragraph.term.number}} | komisja: {{paragraph.committee.code}} | posiedzenie: {{paragraph.sitting.number}}
+                        </p>
+                    </div>
+                </div>
+                
+                {% if paragraph.text %}
+                    <p id="statement-{{ paragraph.statement.pk }}">{{paragraph.text}}</p>
+                {% endif %}
+
+                <div style="display: flex; flex-direction: row; width: 100%;">
+                    <a href="{% url 'full_transcript' paragraph.transcript_id %}">Transkrypcja posiedzenia</a>
+                    <a href="#"
+                    hx-get="{% url 'full_statement' paragraph.statement.pk %}"
+                    hx-target="#statement-{{ paragraph.statement.pk }}"
+                    hx-swap="innerHTML"
+                    style="margin-left: 30px;">
+                        Pełna wypowiedź
+                    </a>
+                </div>
+
+            </div>
+            <hr>
+        {% endfor %}
+        <div>
+    {% endif %}
+{% endblock %}
+</body>
+</html>

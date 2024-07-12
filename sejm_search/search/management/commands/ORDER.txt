@@ -1,0 +1,16 @@
+To create all data in the db from scratch you need to call the commands in the following order:
+
+terms_create
+terms_create
+mps_get
+mps_create
+terms_and_mps_link
+committees_get
+committees_create
+terms_committees_and_members_link
+sittings_create
+
+
+transcripts_create - careful! This will attempt to download > 17 000 transcripts from the Sejm API
+transcripts_process
+paragraphs_vectorize

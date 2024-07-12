@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{mp_info.mp_name}}</h2>
+    {% for term, committees in mp_info.term_committees.items %}
+        <p><strong>{{ term }}</strong></p>
+        <ul>
+        {% for committee in committees %}
+            <li> {{ committee.committee.name }} ({{ committee.committee.code }}) </li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}
