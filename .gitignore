@@ -187,5 +187,5 @@ Temporary Items
 .apdisk
 
 # Data files
-data_collection/data/
-data_collection/connect2api.ipynb
+sejm_search/data_collection/data/
+sejm_search/data_collection/connect2api.ipynb
