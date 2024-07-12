@@ -7,7 +7,7 @@ Much of politics is now carefully managed and spun by communication and PR exper
 - an academic studying political discourse
 - a journalist
 - an activist or NGO employee
-- lobbyist
+- a lobbyist
 - an interested citizen
 
 ## Functionalities
@@ -23,11 +23,12 @@ Much of politics is now carefully managed and spun by communication and PR exper
 
 - App uses elasticsearch to search through transcripts. You can use 'naive' search to find keywords or vectorized search to look for 'topics' or 'sentiments' in the data.
 - Examples:
-    - search based on a keyword:
+    
+Search based on a keyword:
 
 <img src="sejm_search/static/imgs/inflacja_simple.png" width="75%">
     
-    - smart (vectorized) search:
+Smart (vectorized) search:
 
 <img src="sejm_search/static/imgs/inflacja_smart.png" width="75%">
 
